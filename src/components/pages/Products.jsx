@@ -15,14 +15,16 @@ const Products = () => {
   const [error, setError] = useState("")
   const [showFilters, setShowFilters] = useState(false)
   const [sortBy, setSortBy] = useState("name")
-  const [filters, setFilters] = useState({
+const [filters, setFilters] = useState({
     brands: [],
     priceRange: [0, 2000],
     storage: [],
+    camera: [],
+    battery: [],
+    ram: [],
     rating: 0,
     inStock: false
   })
-  
   const [searchParams, setSearchParams] = useSearchParams()
 
   const loadProducts = async () => {
@@ -69,10 +71,34 @@ const Products = () => {
     if (filters.brands.length > 0) {
       filtered = filtered.filter(product => filters.brands.includes(product.brand))
     }
-
-    if (filters.priceRange) {
+if (filters.priceRange) {
       filtered = filtered.filter(product =>
         product.price >= filters.priceRange[0] && product.price <= filters.priceRange[1]
+      )
+    }
+
+    if (filters.camera && filters.camera.length > 0) {
+      filtered = filtered.filter(product => {
+        const primaryCamera = product.specifications.camera.split('+')[0].trim()
+        return filters.camera.some(cam => primaryCamera.includes(cam))
+      })
+    }
+
+    if (filters.battery && filters.battery.length > 0) {
+      filtered = filtered.filter(product => {
+        const batteryMah = parseInt(product.specifications.battery)
+        return filters.battery.some(range => {
+          if (range === "3000-4000 mAh") return batteryMah >= 3000 && batteryMah <= 4000
+          if (range === "4000-5000 mAh") return batteryMah >= 4000 && batteryMah <= 5000
+          if (range === "5000+ mAh") return batteryMah >= 5000
+          return false
+        })
+      })
+    }
+
+    if (filters.ram && filters.ram.length > 0) {
+      filtered = filtered.filter(product => 
+        filters.ram.includes(product.specifications.ram)
       )
     }
 
@@ -83,7 +109,6 @@ const Products = () => {
     if (filters.inStock) {
       filtered = filtered.filter(product => product.inStock)
     }
-
     // Sort products
     filtered.sort((a, b) => {
       switch (sortBy) {

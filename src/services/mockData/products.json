@@ -10,9 +10,10 @@
       "/api/placeholder/600/600"
     ],
     "specifications": {
-      "display": "6.7-inch Super Retina XDR",
+"display": "6.7-inch Super Retina XDR",
       "processor": "A17 Pro Bionic",
       "storage": "256GB",
+      "ram": "8GB",
       "camera": "48MP + 12MP + 12MP",
       "battery": "4422 mAh",
       "os": "iOS 17",
@@ -35,10 +36,11 @@
       "/api/placeholder/600/600",
       "/api/placeholder/600/600"
     ],
-    "specifications": {
+"specifications": {
       "display": "6.8-inch Dynamic AMOLED 2X",
       "processor": "Snapdragon 8 Gen 3",
       "storage": "512GB",
+      "ram": "12GB",
       "camera": "200MP + 50MP + 12MP + 10MP",
       "battery": "5000 mAh",
       "os": "Android 14",
@@ -62,9 +64,10 @@
       "/api/placeholder/600/600"
     ],
     "specifications": {
-      "display": "6.7-inch LTPO OLED",
+"display": "6.7-inch LTPO OLED",
       "processor": "Google Tensor G3",
       "storage": "128GB",
+      "ram": "12GB",
       "camera": "50MP + 48MP + 48MP",
       "battery": "5050 mAh",
       "os": "Android 14",
@@ -89,8 +92,9 @@
     ],
     "specifications": {
       "display": "6.82-inch LTPO AMOLED",
-      "processor": "Snapdragon 8 Gen 3",
+"processor": "Snapdragon 8 Gen 3",
       "storage": "256GB",
+      "ram": "16GB",
       "camera": "50MP + 64MP + 48MP",
       "battery": "5400 mAh",
       "os": "OxygenOS 14",
@@ -115,8 +119,9 @@
     ],
     "specifications": {
       "display": "6.73-inch LTPO AMOLED",
-      "processor": "Snapdragon 8 Gen 3",
+"processor": "Snapdragon 8 Gen 3",
       "storage": "512GB",
+      "ram": "12GB",
       "camera": "50MP + 50MP + 50MP + 50MP",
       "battery": "5300 mAh",
       "os": "HyperOS",
@@ -142,7 +147,8 @@
     "specifications": {
       "display": "6.5-inch 4K OLED",
       "processor": "Snapdragon 8 Gen 3",
-      "storage": "256GB",
+"storage": "256GB",
+      "ram": "12GB",
       "camera": "48MP + 12MP + 12MP",
       "battery": "5000 mAh",
       "os": "Android 14",
@@ -169,6 +175,7 @@
       "display": "6.1-inch Super Retina XDR",
       "processor": "A16 Bionic",
       "storage": "128GB",
+"ram": "6GB",
       "camera": "48MP + 12MP",
       "battery": "3349 mAh",
       "os": "iOS 17",
@@ -194,7 +201,8 @@
     "specifications": {
       "display": "6.2-inch Dynamic AMOLED 2X",
       "processor": "Snapdragon 8 Gen 3",
-      "storage": "256GB",
+"storage": "256GB",
+      "ram": "8GB",
       "camera": "50MP + 12MP + 10MP",
       "battery": "4000 mAh",
       "os": "Android 14",
@@ -221,6 +229,7 @@
       "display": "6.2-inch OLED",
       "processor": "Google Tensor G3",
       "storage": "128GB",
+"ram": "8GB",
       "camera": "50MP + 12MP",
       "battery": "4575 mAh",
       "os": "Android 14",
@@ -245,8 +254,9 @@
     ],
     "specifications": {
       "display": "6.78-inch LTPO AMOLED",
-      "processor": "Snapdragon 8 Gen 2",
+"processor": "Snapdragon 8 Gen 2",
       "storage": "128GB",
+      "ram": "12GB",
       "camera": "50MP + 8MP + 2MP",
       "battery": "5500 mAh",
       "os": "OxygenOS 14",
@@ -272,7 +282,8 @@
     "specifications": {
       "display": "6.36-inch LTPO AMOLED",
       "processor": "Snapdragon 8 Gen 3",
-      "storage": "256GB",
+"storage": "256GB",
+      "ram": "8GB",
       "camera": "50MP + 50MP + 50MP",
       "battery": "4610 mAh",
       "os": "HyperOS",
@@ -297,8 +308,9 @@
     ],
     "specifications": {
       "display": "6.1-inch OLED",
-      "processor": "Snapdragon 8 Gen 2",
+"processor": "Snapdragon 8 Gen 2",
       "storage": "128GB",
+      "ram": "18GB",
       "camera": "48MP + 12MP + 12MP",
       "battery": "5000 mAh",
       "os": "Android 13",
