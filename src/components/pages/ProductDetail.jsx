@@ -132,7 +132,7 @@ src={product.images?.[selectedImage] || "/api/placeholder/600/600"}
               />
             </div>
             
-              <div className="grid grid-cols-4 gap-3">
+<div className="grid grid-cols-4 gap-3">
                 {product.images?.map((image, index) => (
                   <button
                     key={index}
@@ -152,7 +152,6 @@ src={product.images?.[selectedImage] || "/api/placeholder/600/600"}
                   </button>
                 ))}
               </div>
-            )}
           </div>
 
           {/* Product Info */}
