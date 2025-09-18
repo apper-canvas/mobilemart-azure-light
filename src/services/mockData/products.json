@@ -1,0 +1,314 @@
+[
+  {
+    "Id": 1,
+    "name": "iPhone 15 Pro Max",
+    "brand": "Apple",
+    "price": 1199,
+    "images": [
+      "/api/placeholder/600/600",
+      "/api/placeholder/600/600",
+      "/api/placeholder/600/600"
+    ],
+    "specifications": {
+      "display": "6.7-inch Super Retina XDR",
+      "processor": "A17 Pro Bionic",
+      "storage": "256GB",
+      "camera": "48MP + 12MP + 12MP",
+      "battery": "4422 mAh",
+      "os": "iOS 17",
+      "5g": "Yes",
+      "waterResistance": "IP68"
+    },
+    "description": "The ultimate iPhone experience with titanium design, Action Button, and the most powerful Pro camera system ever.",
+    "rating": 4.8,
+    "reviewCount": 2847,
+    "inStock": true,
+    "category": "smartphone"
+  },
+  {
+    "Id": 2,
+    "name": "Samsung Galaxy S24 Ultra",
+    "brand": "Samsung",
+    "price": 1299,
+    "images": [
+      "/api/placeholder/600/600",
+      "/api/placeholder/600/600",
+      "/api/placeholder/600/600"
+    ],
+    "specifications": {
+      "display": "6.8-inch Dynamic AMOLED 2X",
+      "processor": "Snapdragon 8 Gen 3",
+      "storage": "512GB",
+      "camera": "200MP + 50MP + 12MP + 10MP",
+      "battery": "5000 mAh",
+      "os": "Android 14",
+      "5g": "Yes",
+      "waterResistance": "IP68"
+    },
+    "description": "Galaxy AI is here. Circle to Search, Live Translate, Note Assist and more, right at your fingertips.",
+    "rating": 4.7,
+    "reviewCount": 1923,
+    "inStock": true,
+    "category": "smartphone"
+  },
+  {
+    "Id": 3,
+    "name": "Google Pixel 8 Pro",
+    "brand": "Google",
+    "price": 999,
+    "images": [
+      "/api/placeholder/600/600",
+      "/api/placeholder/600/600",
+      "/api/placeholder/600/600"
+    ],
+    "specifications": {
+      "display": "6.7-inch LTPO OLED",
+      "processor": "Google Tensor G3",
+      "storage": "128GB",
+      "camera": "50MP + 48MP + 48MP",
+      "battery": "5050 mAh",
+      "os": "Android 14",
+      "5g": "Yes",
+      "waterResistance": "IP68"
+    },
+    "description": "The most helpful Pixel phone yet, with the best of Google AI to help you do more, unfiltered.",
+    "rating": 4.6,
+    "reviewCount": 1456,
+    "inStock": true,
+    "category": "smartphone"
+  },
+  {
+    "Id": 4,
+    "name": "OnePlus 12",
+    "brand": "OnePlus",
+    "price": 799,
+    "images": [
+      "/api/placeholder/600/600",
+      "/api/placeholder/600/600",
+      "/api/placeholder/600/600"
+    ],
+    "specifications": {
+      "display": "6.82-inch LTPO AMOLED",
+      "processor": "Snapdragon 8 Gen 3",
+      "storage": "256GB",
+      "camera": "50MP + 64MP + 48MP",
+      "battery": "5400 mAh",
+      "os": "OxygenOS 14",
+      "5g": "Yes",
+      "waterResistance": "IP65"
+    },
+    "description": "Never Settle for anything less than the smoothest, fastest, most intelligent OnePlus experience yet.",
+    "rating": 4.5,
+    "reviewCount": 892,
+    "inStock": true,
+    "category": "smartphone"
+  },
+  {
+    "Id": 5,
+    "name": "Xiaomi 14 Ultra",
+    "brand": "Xiaomi",
+    "price": 1099,
+    "images": [
+      "/api/placeholder/600/600",
+      "/api/placeholder/600/600",
+      "/api/placeholder/600/600"
+    ],
+    "specifications": {
+      "display": "6.73-inch LTPO AMOLED",
+      "processor": "Snapdragon 8 Gen 3",
+      "storage": "512GB",
+      "camera": "50MP + 50MP + 50MP + 50MP",
+      "battery": "5300 mAh",
+      "os": "HyperOS",
+      "5g": "Yes",
+      "waterResistance": "IP68"
+    },
+    "description": "Professional photography redefined with Leica optics and computational photography excellence.",
+    "rating": 4.4,
+    "reviewCount": 723,
+    "inStock": true,
+    "category": "smartphone"
+  },
+  {
+    "Id": 6,
+    "name": "Sony Xperia 1 VI",
+    "brand": "Sony",
+    "price": 1399,
+    "images": [
+      "/api/placeholder/600/600",
+      "/api/placeholder/600/600",
+      "/api/placeholder/600/600"
+    ],
+    "specifications": {
+      "display": "6.5-inch 4K OLED",
+      "processor": "Snapdragon 8 Gen 3",
+      "storage": "256GB",
+      "camera": "48MP + 12MP + 12MP",
+      "battery": "5000 mAh",
+      "os": "Android 14",
+      "5g": "Yes",
+      "waterResistance": "IP68"
+    },
+    "description": "Crafted for creators with professional camera technology and cinematic display experience.",
+    "rating": 4.3,
+    "reviewCount": 445,
+    "inStock": false,
+    "category": "smartphone"
+  },
+  {
+    "Id": 7,
+    "name": "iPhone 15",
+    "brand": "Apple",
+    "price": 799,
+    "images": [
+      "/api/placeholder/600/600",
+      "/api/placeholder/600/600",
+      "/api/placeholder/600/600"
+    ],
+    "specifications": {
+      "display": "6.1-inch Super Retina XDR",
+      "processor": "A16 Bionic",
+      "storage": "128GB",
+      "camera": "48MP + 12MP",
+      "battery": "3349 mAh",
+      "os": "iOS 17",
+      "5g": "Yes",
+      "waterResistance": "IP68"
+    },
+    "description": "iPhone 15 brings you Dynamic Island, a 48MP Main camera, and USB-C—all in a durable color-infused glass and aluminum design.",
+    "rating": 4.6,
+    "reviewCount": 3421,
+    "inStock": true,
+    "category": "smartphone"
+  },
+  {
+    "Id": 8,
+    "name": "Samsung Galaxy S24",
+    "brand": "Samsung",
+    "price": 799,
+    "images": [
+      "/api/placeholder/600/600",
+      "/api/placeholder/600/600",
+      "/api/placeholder/600/600"
+    ],
+    "specifications": {
+      "display": "6.2-inch Dynamic AMOLED 2X",
+      "processor": "Snapdragon 8 Gen 3",
+      "storage": "256GB",
+      "camera": "50MP + 12MP + 10MP",
+      "battery": "4000 mAh",
+      "os": "Android 14",
+      "5g": "Yes",
+      "waterResistance": "IP68"
+    },
+    "description": "Meet Galaxy S24. Now supercharged with Galaxy AI, it's more than a smartphone — it's your intelligent companion.",
+    "rating": 4.5,
+    "reviewCount": 2156,
+    "inStock": true,
+    "category": "smartphone"
+  },
+  {
+    "Id": 9,
+    "name": "Google Pixel 8",
+    "brand": "Google",
+    "price": 699,
+    "images": [
+      "/api/placeholder/600/600",
+      "/api/placeholder/600/600",
+      "/api/placeholder/600/600"
+    ],
+    "specifications": {
+      "display": "6.2-inch OLED",
+      "processor": "Google Tensor G3",
+      "storage": "128GB",
+      "camera": "50MP + 12MP",
+      "battery": "4575 mAh",
+      "os": "Android 14",
+      "5g": "Yes",
+      "waterResistance": "IP68"
+    },
+    "description": "Google Pixel 8 is the helpful phone engineered by Google, with an amazing camera and exclusive features.",
+    "rating": 4.4,
+    "reviewCount": 1789,
+    "inStock": true,
+    "category": "smartphone"
+  },
+  {
+    "Id": 10,
+    "name": "OnePlus 12R",
+    "brand": "OnePlus",
+    "price": 499,
+    "images": [
+      "/api/placeholder/600/600",
+      "/api/placeholder/600/600",
+      "/api/placeholder/600/600"
+    ],
+    "specifications": {
+      "display": "6.78-inch LTPO AMOLED",
+      "processor": "Snapdragon 8 Gen 2",
+      "storage": "128GB",
+      "camera": "50MP + 8MP + 2MP",
+      "battery": "5500 mAh",
+      "os": "OxygenOS 14",
+      "5g": "Yes",
+      "waterResistance": "IP64"
+    },
+    "description": "Never Settle for less with flagship performance, premium design, and lightning-fast charging.",
+    "rating": 4.3,
+    "reviewCount": 967,
+    "inStock": true,
+    "category": "smartphone"
+  },
+  {
+    "Id": 11,
+    "name": "Xiaomi 14",
+    "brand": "Xiaomi",
+    "price": 699,
+    "images": [
+      "/api/placeholder/600/600",
+      "/api/placeholder/600/600",
+      "/api/placeholder/600/600"
+    ],
+    "specifications": {
+      "display": "6.36-inch LTPO AMOLED",
+      "processor": "Snapdragon 8 Gen 3",
+      "storage": "256GB",
+      "camera": "50MP + 50MP + 50MP",
+      "battery": "4610 mAh",
+      "os": "HyperOS",
+      "5g": "Yes",
+      "waterResistance": "IP68"
+    },
+    "description": "Compact flagship with Leica photography, premium materials, and flagship performance.",
+    "rating": 4.2,
+    "reviewCount": 634,
+    "inStock": true,
+    "category": "smartphone"
+  },
+  {
+    "Id": 12,
+    "name": "Sony Xperia 5 V",
+    "brand": "Sony",
+    "price": 999,
+    "images": [
+      "/api/placeholder/600/600",
+      "/api/placeholder/600/600",
+      "/api/placeholder/600/600"
+    ],
+    "specifications": {
+      "display": "6.1-inch OLED",
+      "processor": "Snapdragon 8 Gen 2",
+      "storage": "128GB",
+      "camera": "48MP + 12MP + 12MP",
+      "battery": "5000 mAh",
+      "os": "Android 13",
+      "5g": "Yes",
+      "waterResistance": "IP68"
+    },
+    "description": "Compact entertainment powerhouse with professional camera capabilities and immersive display.",
+    "rating": 4.1,
+    "reviewCount": 287,
+    "inStock": true,
+    "category": "smartphone"
+  }
+]
