@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react";
 
 export const useCart = () => {
   const [cart, setCart] = useState([])
@@ -20,14 +20,14 @@ export const useCart = () => {
     localStorage.setItem("mobilemart-cart", JSON.stringify(cart))
   }, [cart])
 
-  const addToCart = (product) => {
+const addToCart = (product, quantity = 1) => {
     setCart(prevCart => {
-      const existingItem = prevCart.find(item => item.productId === product.Id)
+const existingItem = prevCart.find(item => item.productId === product.Id)
       
       if (existingItem) {
         return prevCart.map(item =>
           item.productId === product.Id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + quantity }
             : item
         )
       } else {
@@ -70,7 +70,7 @@ export const useCart = () => {
   }
 
   const getTotalPrice = () => {
-    return cart.reduce((total, item) => total + (item.product.price * item.quantity), 0)
+return cart.reduce((total, item) => total + (item.product.price * item.quantity), 0)
   }
 
   const isInCart = (productId) => {

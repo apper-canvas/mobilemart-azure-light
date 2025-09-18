@@ -44,7 +44,7 @@ const [filters, setFilters] = useState({
     loadProducts()
   }, [])
 
-  useEffect(() => {
+useEffect(() => {
     // Apply URL parameters to filters
     const searchQuery = searchParams.get("search") || ""
     const brandParam = searchParams.get("brand") || ""
@@ -71,7 +71,8 @@ const [filters, setFilters] = useState({
     if (filters.brands.length > 0) {
       filtered = filtered.filter(product => filters.brands.includes(product.brand))
     }
-if (filters.priceRange) {
+    
+    if (filters.priceRange) {
       filtered = filtered.filter(product =>
         product.price >= filters.priceRange[0] && product.price <= filters.priceRange[1]
       )
@@ -79,14 +80,14 @@ if (filters.priceRange) {
 
     if (filters.camera && filters.camera.length > 0) {
       filtered = filtered.filter(product => {
-        const primaryCamera = product.specifications.camera.split('+')[0].trim()
-        return filters.camera.some(cam => primaryCamera.includes(cam))
+        const primaryCamera = product.specifications?.camera?.split('+')[0]?.trim()
+        return filters.camera.some(cam => primaryCamera?.includes(cam))
       })
     }
 
     if (filters.battery && filters.battery.length > 0) {
       filtered = filtered.filter(product => {
-        const batteryMah = parseInt(product.specifications.battery)
+        const batteryMah = parseInt(product.specifications?.battery)
         return filters.battery.some(range => {
           if (range === "3000-4000 mAh") return batteryMah >= 3000 && batteryMah <= 4000
           if (range === "4000-5000 mAh") return batteryMah >= 4000 && batteryMah <= 5000
@@ -98,7 +99,7 @@ if (filters.priceRange) {
 
     if (filters.ram && filters.ram.length > 0) {
       filtered = filtered.filter(product => 
-        filters.ram.includes(product.specifications.ram)
+        filters.ram.includes(product.specifications?.ram)
       )
     }
 
@@ -109,6 +110,7 @@ if (filters.priceRange) {
     if (filters.inStock) {
       filtered = filtered.filter(product => product.inStock)
     }
+    
     // Sort products
     filtered.sort((a, b) => {
       switch (sortBy) {
@@ -126,7 +128,6 @@ if (filters.priceRange) {
 
     setFilteredProducts(filtered)
   }, [products, filters, searchParams, sortBy])
-
   const handleSearch = (query) => {
     if (query.trim()) {
       setSearchParams({ search: query })

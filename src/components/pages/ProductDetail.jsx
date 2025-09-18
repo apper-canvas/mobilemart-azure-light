@@ -35,10 +35,10 @@ const ProductDetail = () => {
       setProduct(productData)
       
 // Load reviews
-      const productReviews = await reviewService.getByProductId(productData.Id)
+const productReviews = await reviewService.getByProductId(productData.Id)
       setReviews(productReviews)
-      
-      // Track product view for recommendations
+
+      // Track product view
       productService.trackView(productData.Id)
     } catch (err) {
       setError("Failed to load product details")
@@ -71,7 +71,7 @@ const ProductDetail = () => {
 
   const handleAddToCart = () => {
     for (let i = 0; i < quantity; i++) {
-      addToCart(product)
+addToCart(product)
     }
     toast.success(`${product.name} added to cart`)
   }
@@ -115,7 +115,7 @@ const ProductDetail = () => {
             <ApperIcon name="ChevronRight" size={14} />
             <span>Products</span>
             <ApperIcon name="ChevronRight" size={14} />
-            <span className="text-gray-900 font-medium">{product.name}</span>
+<span className="text-gray-900 font-medium">{product.name}</span>
           </nav>
         </div>
       </div>
@@ -126,14 +126,14 @@ const ProductDetail = () => {
           <div className="space-y-4">
             <div className="aspect-square bg-white rounded-lg border border-gray-200 overflow-hidden">
               <img
-                src={product.images?.[selectedImage] || "/api/placeholder/600/600"}
+src={product.images?.[selectedImage] || "/api/placeholder/600/600"}
                 alt={product.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover rounded-lg"
               />
             </div>
-            {product.images?.length > 1 && (
+            
               <div className="grid grid-cols-4 gap-3">
-                {product.images.map((image, index) => (
+                {product.images?.map((image, index) => (
                   <button
                     key={index}
                     onClick={() => setSelectedImage(index)}
@@ -159,7 +159,7 @@ const ProductDetail = () => {
           <div className="space-y-6">
             <div>
               <Badge variant="outline" className="mb-3">
-                {product.brand}
+{product.brand}
               </Badge>
               <h1 className="text-3xl font-bold text-gray-900 mb-4">
                 {product.name}
@@ -173,7 +173,7 @@ const ProductDetail = () => {
                       size={18}
                       className={cn(
                         "transition-smooth",
-                        i < Math.floor(product.rating)
+i < Math.floor(product.rating)
                           ? "text-accent fill-current"
                           : "text-gray-300"
                       )}
@@ -181,7 +181,7 @@ const ProductDetail = () => {
                   ))}
                 </div>
                 <span className="text-gray-600">
-                  {product.rating} ({product.reviewCount} reviews)
+{product.rating} ({product.reviewCount} reviews)
                 </span>
               </div>
               <p className="text-gray-600 leading-relaxed">
@@ -192,7 +192,7 @@ const ProductDetail = () => {
             <div className="border-t border-gray-200 pt-6">
               <div className="flex items-center gap-4 mb-6">
                 <span className="text-4xl font-bold gradient-text">
-                  {formatPrice(product.price)}
+{formatPrice(product.price)}
                 </span>
                 {product.inStock ? (
                   <Badge variant="success">In Stock</Badge>
@@ -234,13 +234,13 @@ const ProductDetail = () => {
                   size="lg"
                   icon="ShoppingCart"
                   onClick={handleAddToCart}
-                  disabled={!product.inStock}
+disabled={!product.inStock}
                   className="flex-1"
                 >
                   Add to Cart
                 </Button>
                 <Button
-                  variant="accent"
+                  variant="primary"
                   size="lg"
                   onClick={handleBuyNow}
                   disabled={!product.inStock}
@@ -254,7 +254,7 @@ const ProductDetail = () => {
         </div>
 
         {/* Specifications */}
-        {product.specifications && (
+{product.specifications && Object.keys(product.specifications).length > 0 && (
           <Card className="mb-12 p-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
               Specifications
@@ -287,14 +287,14 @@ const ProductDetail = () => {
                     size={16}
                     className={cn(
                       "transition-smooth",
-                      i < Math.floor(product.rating)
+i < Math.floor(product.rating)
                         ? "text-accent fill-current"
                         : "text-gray-300"
                     )}
                   />
                 ))}
               </div>
-              <span className="text-sm text-gray-600">
+              <span className="text-lg font-semibold text-gray-900">
                 {product.rating} out of 5 stars
               </span>
             </div>
@@ -303,12 +303,12 @@ const ProductDetail = () => {
           <div className="space-y-6">
             {reviews.length > 0 ? (
               reviews.map((review) => (
-                <div key={review.Id} className="border-b border-gray-200 pb-6 last:border-b-0">
+<div key={review.Id} className="border-b border-gray-200 pb-6 last:border-b-0">
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center">
                         <span className="text-white font-medium text-sm">
-                          {review.author.charAt(0).toUpperCase()}
+{review.author.charAt(0).toUpperCase()}
                         </span>
                       </div>
                       <div>
@@ -327,7 +327,7 @@ const ProductDetail = () => {
                           name="Star"
                           size={14}
                           className={cn(
-                            "transition-smooth",
+"transition-smooth",
                             i < review.rating
                               ? "text-accent fill-current"
                               : "text-gray-300"
@@ -336,7 +336,7 @@ const ProductDetail = () => {
                       ))}
                     </div>
                   </div>
-                  <p className="text-gray-700 leading-relaxed">
+<p className="text-gray-700 leading-relaxed">
                     {review.comment}
                   </p>
                 </div>
@@ -354,7 +354,7 @@ const ProductDetail = () => {
 
       {/* Product Recommendations */}
       <div className="mt-12">
-        <ProductRecommendationCarousel 
+<ProductRecommendationCarousel 
           currentProductId={product?.Id}
           title="Similar Products You Might Like"
         />

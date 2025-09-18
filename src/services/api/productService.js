@@ -1,66 +1,283 @@
-import productsData from "@/services/mockData/products.json"
-
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
 export const productService = {
   async getAll() {
-    await delay(300)
-    return [...productsData]
+    try {
+      await delay(300)
+      
+      const { ApperClient } = window.ApperSDK;
+      const apperClient = new ApperClient({
+        apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+        apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+      });
+
+      const params = {
+        fields: [
+          {"field": {"Name": "Id"}},
+          {"field": {"Name": "name_c"}},
+          {"field": {"Name": "brand_c"}},
+          {"field": {"Name": "price_c"}},
+          {"field": {"Name": "images_c"}},
+          {"field": {"Name": "specifications_c"}},
+          {"field": {"Name": "description_c"}},
+          {"field": {"Name": "rating_c"}},
+          {"field": {"Name": "review_count_c"}},
+          {"field": {"Name": "in_stock_c"}},
+          {"field": {"Name": "category_c"}}
+        ]
+      };
+
+      const response = await apperClient.fetchRecords('product_c', params);
+      
+      if (!response?.data?.length) {
+        return [];
+      }
+      
+      return response.data.map(product => ({
+        Id: product.Id,
+        name: product.name_c,
+        brand: product.brand_c,
+        price: product.price_c,
+        images: product.images_c ? JSON.parse(product.images_c) : [],
+        specifications: product.specifications_c ? JSON.parse(product.specifications_c) : {},
+        description: product.description_c,
+        rating: product.rating_c,
+        reviewCount: product.review_count_c,
+        inStock: product.in_stock_c,
+        category: product.category_c
+      }));
+    } catch (error) {
+      console.error("Error fetching products:", error?.response?.data?.message || error);
+      return [];
+    }
   },
 
   async getById(id) {
-    await delay(200)
-    const product = productsData.find(p => p.Id === id)
-    return product ? { ...product } : null
+    try {
+      await delay(200)
+      
+      const { ApperClient } = window.ApperSDK;
+      const apperClient = new ApperClient({
+        apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+        apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+      });
+
+      const params = {
+        fields: [
+          {"field": {"Name": "Id"}},
+          {"field": {"Name": "name_c"}},
+          {"field": {"Name": "brand_c"}},
+          {"field": {"Name": "price_c"}},
+          {"field": {"Name": "images_c"}},
+          {"field": {"Name": "specifications_c"}},
+          {"field": {"Name": "description_c"}},
+          {"field": {"Name": "rating_c"}},
+          {"field": {"Name": "review_count_c"}},
+          {"field": {"Name": "in_stock_c"}},
+          {"field": {"Name": "category_c"}}
+        ]
+      };
+
+      const response = await apperClient.getRecordById('product_c', id, params);
+      
+      if (!response?.data) {
+        return null;
+      }
+      
+      const product = response.data;
+      return {
+        Id: product.Id,
+        name: product.name_c,
+        brand: product.brand_c,
+        price: product.price_c,
+        images: product.images_c ? JSON.parse(product.images_c) : [],
+        specifications: product.specifications_c ? JSON.parse(product.specifications_c) : {},
+        description: product.description_c,
+        rating: product.rating_c,
+        reviewCount: product.review_count_c,
+        inStock: product.in_stock_c,
+        category: product.category_c
+      };
+    } catch (error) {
+      console.error(`Error fetching product ${id}:`, error?.response?.data?.message || error);
+      return null;
+    }
   },
 
   async getByBrand(brand) {
-    await delay(250)
-    return productsData.filter(p => p.brand.toLowerCase() === brand.toLowerCase()).map(p => ({ ...p }))
+    try {
+      await delay(250)
+      const allProducts = await this.getAll();
+      return allProducts.filter(p => p.brand.toLowerCase() === brand.toLowerCase());
+    } catch (error) {
+      console.error("Error fetching products by brand:", error?.response?.data?.message || error);
+      return [];
+    }
   },
 
   async search(query) {
-    await delay(300)
-    const searchTerm = query.toLowerCase()
-    return productsData
-      .filter(p => 
+    try {
+      await delay(300)
+      const allProducts = await this.getAll();
+      const searchTerm = query.toLowerCase()
+      return allProducts.filter(p => 
         p.name.toLowerCase().includes(searchTerm) ||
         p.brand.toLowerCase().includes(searchTerm) ||
         p.description.toLowerCase().includes(searchTerm)
-      )
-      .map(p => ({ ...p }))
+      );
+    } catch (error) {
+      console.error("Error searching products:", error?.response?.data?.message || error);
+      return [];
+    }
   },
 
   async create(productData) {
-    await delay(400)
-    const maxId = Math.max(...productsData.map(p => p.Id))
-    const newProduct = {
-      ...productData,
-      Id: maxId + 1,
-      rating: 0,
-      reviewCount: 0,
-      inStock: true
+    try {
+      await delay(400)
+      
+      const { ApperClient } = window.ApperSDK;
+      const apperClient = new ApperClient({
+        apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+        apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+      });
+
+      const params = {
+        records: [{
+          name_c: productData.name,
+          brand_c: productData.brand,
+          price_c: productData.price,
+          images_c: JSON.stringify(productData.images || []),
+          specifications_c: JSON.stringify(productData.specifications || {}),
+          description_c: productData.description,
+          rating_c: 0,
+          review_count_c: 0,
+          in_stock_c: true,
+          category_c: productData.category
+        }]
+      };
+
+      const response = await apperClient.createRecord('product_c', params);
+      
+      if (!response.success) {
+        console.error(response.message);
+        return null;
+      }
+
+      if (response.results) {
+        const successful = response.results.filter(r => r.success);
+        if (successful.length > 0) {
+          const product = successful[0].data;
+          return {
+            Id: product.Id,
+            name: product.name_c,
+            brand: product.brand_c,
+            price: product.price_c,
+            images: product.images_c ? JSON.parse(product.images_c) : [],
+            specifications: product.specifications_c ? JSON.parse(product.specifications_c) : {},
+            description: product.description_c,
+            rating: product.rating_c,
+            reviewCount: product.review_count_c,
+            inStock: product.in_stock_c,
+            category: product.category_c
+          };
+        }
+      }
+      return null;
+    } catch (error) {
+      console.error("Error creating product:", error?.response?.data?.message || error);
+      return null;
     }
-    productsData.push(newProduct)
-    return { ...newProduct }
   },
 
   async update(id, productData) {
-    await delay(300)
-    const index = productsData.findIndex(p => p.Id === id)
-    if (index === -1) return null
-    
-    productsData[index] = { ...productsData[index], ...productData }
-    return { ...productsData[index] }
+    try {
+      await delay(300)
+      
+      const { ApperClient } = window.ApperSDK;
+      const apperClient = new ApperClient({
+        apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+        apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+      });
+
+      const params = {
+        records: [{
+          Id: id,
+          name_c: productData.name,
+          brand_c: productData.brand,
+          price_c: productData.price,
+          images_c: JSON.stringify(productData.images || []),
+          specifications_c: JSON.stringify(productData.specifications || {}),
+          description_c: productData.description,
+          rating_c: productData.rating,
+          review_count_c: productData.reviewCount,
+          in_stock_c: productData.inStock,
+          category_c: productData.category
+        }]
+      };
+
+      const response = await apperClient.updateRecord('product_c', params);
+      
+      if (!response.success) {
+        console.error(response.message);
+        return null;
+      }
+
+      if (response.results) {
+        const successful = response.results.filter(r => r.success);
+        if (successful.length > 0) {
+          const product = successful[0].data;
+          return {
+            Id: product.Id,
+            name: product.name_c,
+            brand: product.brand_c,
+            price: product.price_c,
+            images: product.images_c ? JSON.parse(product.images_c) : [],
+            specifications: product.specifications_c ? JSON.parse(product.specifications_c) : {},
+            description: product.description_c,
+            rating: product.rating_c,
+            reviewCount: product.review_count_c,
+            inStock: product.in_stock_c,
+            category: product.category_c
+          };
+        }
+      }
+      return null;
+    } catch (error) {
+      console.error("Error updating product:", error?.response?.data?.message || error);
+      return null;
+    }
   },
 
   async delete(id) {
-    await delay(300)
-    const index = productsData.findIndex(p => p.Id === id)
-    if (index === -1) return false
-    
-productsData.splice(index, 1)
-    return true
+    try {
+      await delay(300)
+      
+      const { ApperClient } = window.ApperSDK;
+      const apperClient = new ApperClient({
+        apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+        apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+      });
+
+      const params = { 
+        RecordIds: [id]
+      };
+
+      const response = await apperClient.deleteRecord('product_c', params);
+      
+      if (!response.success) {
+        console.error(response.message);
+        return false;
+      }
+
+      if (response.results) {
+        const successful = response.results.filter(r => r.success);
+        return successful.length > 0;
+      }
+      return false;
+    } catch (error) {
+      console.error("Error deleting product:", error?.response?.data?.message || error);
+      return false;
+    }
   },
 
   // Browsing history and recommendation methods
@@ -88,38 +305,44 @@ productsData.splice(index, 1)
   },
 
   async getRecommendations(currentProductId = null, limit = 8) {
-    await delay(300)
-    const history = this.getBrowsingHistory()
-    
-    if (!history.length) {
-      // Return random popular products if no history
-      return productsData
-        .filter(p => p.rating >= 4.0)
-        .sort(() => 0.5 - Math.random())
-        .slice(0, limit)
-        .map(p => ({ ...p }))
+    try {
+      await delay(300)
+      const history = this.getBrowsingHistory()
+      
+      const allProducts = await this.getAll();
+      
+      if (!history.length) {
+        // Return random popular products if no history
+        return allProducts
+          .filter(p => p.rating >= 4.0)
+          .sort(() => 0.5 - Math.random())
+          .slice(0, limit)
+      }
+
+      // Get recently viewed products for similarity analysis
+      const recentProducts = history.slice(0, 10)
+        .map(id => allProducts.find(p => p.Id === id))
+        .filter(Boolean)
+
+      if (!recentProducts.length) {
+        return []
+      }
+
+      // Get similar products based on recent viewing history
+      const recommendations = this.getSimilarProducts(recentProducts, currentProductId, limit, allProducts)
+      return recommendations
+    } catch (error) {
+      console.error("Error fetching recommendations:", error?.response?.data?.message || error);
+      return [];
     }
-
-    // Get recently viewed products for similarity analysis
-    const recentProducts = history.slice(0, 10)
-      .map(id => productsData.find(p => p.Id === id))
-      .filter(Boolean)
-
-    if (!recentProducts.length) {
-      return []
-    }
-
-    // Get similar products based on recent viewing history
-    const recommendations = this.getSimilarProducts(recentProducts, currentProductId, limit)
-    return recommendations
   },
 
-  getSimilarProducts(baseProducts, excludeId = null, limit = 8) {
+  getSimilarProducts(baseProducts, excludeId = null, limit = 8, allProducts = []) {
     const excludeIdInt = excludeId ? parseInt(excludeId) : null
     const scores = new Map()
 
     // Calculate similarity scores for all products
-    productsData.forEach(product => {
+    allProducts.forEach(product => {
       if (product.Id === excludeIdInt) return
       
       let totalScore = 0
@@ -167,8 +390,7 @@ productsData.splice(index, 1)
     return Array.from(scores.entries())
       .sort(([, a], [, b]) => b - a)
       .slice(0, limit)
-      .map(([productId]) => productsData.find(p => p.Id === productId))
+      .map(([productId]) => allProducts.find(p => p.Id === productId))
       .filter(Boolean)
-      .map(p => ({ ...p }))
   }
 }

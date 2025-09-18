@@ -1,15 +1,18 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
 import { cn } from "@/utils/cn"
 import Button from "@/components/atoms/Button"
 import SearchBar from "@/components/molecules/SearchBar"
 import ApperIcon from "@/components/ApperIcon"
 import { useCart } from "@/hooks/useCart"
-
+import { AuthContext } from "../../App"
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { getTotalItems } = useCart()
   const navigate = useNavigate()
+  const { logout } = useContext(AuthContext)
+  const { user, isAuthenticated } = useSelector((state) => state.user)
 
   const handleSearch = (query) => {
     if (query.trim()) {
@@ -58,7 +61,7 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Actions */}
+{/* Actions */}
           <div className="flex items-center gap-3">
             {/* Mobile Search */}
             <Button
@@ -85,6 +88,24 @@ const Header = () => {
                 )}
               </Button>
             </Link>
+
+            {/* User Menu */}
+            {isAuthenticated && user && (
+              <div className="hidden md:flex items-center gap-3">
+                <span className="text-sm text-gray-700">
+                  Welcome, {user.firstName || user.emailAddress}
+                </span>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={logout}
+                  icon="LogOut"
+                  className="text-gray-700 hover:text-error"
+                >
+                  Logout
+                </Button>
+              </div>
+            )}
 
             {/* Mobile Menu Toggle */}
             <Button

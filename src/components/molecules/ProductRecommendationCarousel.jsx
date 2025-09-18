@@ -144,7 +144,7 @@ export default function ProductRecommendationCarousel({ currentProductId = null,
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {recommendations.map((product) => (
-          <div key={product.Id} className="flex-none w-64">
+<div key={product.Id} className="flex-none w-64">
             <Link 
               to={`/products/${product.Id}`}
               onClick={() => handleProductClick(product.Id)}
@@ -154,7 +154,7 @@ export default function ProductRecommendationCarousel({ currentProductId = null,
                 {/* Product Image */}
                 <div className="relative mb-4">
                   <img
-                    src={product.image || `https://picsum.photos/seed/${product.Id}/300/300`}
+                    src={product.images?.[0] || `https://picsum.photos/seed/${product.Id}/300/300`}
                     alt={product.name}
                     className="w-full h-48 object-cover rounded-lg bg-gray-100"
                     loading="lazy"
