@@ -4,11 +4,11 @@ import { cn } from "@/utils/cn"
 import Button from "@/components/atoms/Button"
 import Card from "@/components/atoms/Card"
 import ProductGrid from "@/components/organisms/ProductGrid"
+import ProductRecommendationCarousel from "@/components/molecules/ProductRecommendationCarousel"
 import SearchBar from "@/components/molecules/SearchBar"
 import ApperIcon from "@/components/ApperIcon"
 import { productService } from "@/services/api/productService"
 import { useNavigate } from "react-router-dom"
-
 const Home = () => {
   const [featuredProducts, setFeaturedProducts] = useState([])
   const [loading, setLoading] = useState(true)
@@ -171,9 +171,15 @@ const Home = () => {
             error={error}
             onRetry={loadFeaturedProducts}
           />
-        </div>
+</div>
       </section>
 
+      {/* Personalized Recommendations */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ProductRecommendationCarousel title="Recommended for You" />
+        </div>
+      </section>
       {/* Features Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

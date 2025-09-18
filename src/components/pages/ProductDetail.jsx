@@ -7,11 +7,11 @@ import Card from "@/components/atoms/Card"
 import Loading from "@/components/ui/Loading"
 import Error from "@/components/ui/Error"
 import ApperIcon from "@/components/ApperIcon"
+import ProductRecommendationCarousel from "@/components/molecules/ProductRecommendationCarousel"
 import { productService } from "@/services/api/productService"
 import { reviewService } from "@/services/api/reviewService"
 import { useCart } from "@/hooks/useCart"
 import { toast } from "react-toastify"
-
 const ProductDetail = () => {
   const { id } = useParams()
   const navigate = useNavigate()
@@ -34,9 +34,12 @@ const ProductDetail = () => {
       }
       setProduct(productData)
       
-      // Load reviews
+// Load reviews
       const productReviews = await reviewService.getByProductId(productData.Id)
       setReviews(productReviews)
+      
+      // Track product view for recommendations
+      productService.trackView(productData.Id)
     } catch (err) {
       setError("Failed to load product details")
     } finally {
@@ -345,8 +348,16 @@ const ProductDetail = () => {
                 <p className="text-sm text-gray-500">Be the first to review this product</p>
               </div>
             )}
-          </div>
+</div>
         </Card>
+      </div>
+
+      {/* Product Recommendations */}
+      <div className="mt-12">
+        <ProductRecommendationCarousel 
+          currentProductId={product?.Id}
+          title="Similar Products You Might Like"
+        />
       </div>
     </div>
   )
