@@ -33,13 +33,25 @@ export const productService = {
         return [];
       }
       
-      return response.data.map(product => ({
+return response.data.map(product => ({
         Id: product.Id,
         name: product.name_c,
         brand: product.brand_c,
         price: product.price_c,
-        images: product.images_c ? JSON.parse(product.images_c) : [],
-        specifications: product.specifications_c ? JSON.parse(product.specifications_c) : {},
+        images: product.images_c ? (() => {
+          try {
+            return JSON.parse(product.images_c);
+          } catch (e) {
+            return [];
+          }
+        })() : [],
+        specifications: product.specifications_c ? (() => {
+          try {
+            return JSON.parse(product.specifications_c);
+          } catch (e) {
+            return {};
+          }
+        })() : {},
         description: product.description_c,
         rating: product.rating_c,
         reviewCount: product.review_count_c,
@@ -90,8 +102,20 @@ export const productService = {
         name: product.name_c,
         brand: product.brand_c,
         price: product.price_c,
-        images: product.images_c ? JSON.parse(product.images_c) : [],
-        specifications: product.specifications_c ? JSON.parse(product.specifications_c) : {},
+images: product.images_c ? (() => {
+          try {
+            return JSON.parse(product.images_c);
+          } catch (e) {
+            return [];
+          }
+        })() : [],
+        specifications: product.specifications_c ? (() => {
+          try {
+            return JSON.parse(product.specifications_c);
+          } catch (e) {
+            return {};
+          }
+        })() : {},
         description: product.description_c,
         rating: product.rating_c,
         reviewCount: product.review_count_c,
@@ -172,8 +196,20 @@ export const productService = {
             name: product.name_c,
             brand: product.brand_c,
             price: product.price_c,
-            images: product.images_c ? JSON.parse(product.images_c) : [],
-            specifications: product.specifications_c ? JSON.parse(product.specifications_c) : {},
+images: product.images_c ? (() => {
+              try {
+                return JSON.parse(product.images_c);
+              } catch (e) {
+                return [];
+              }
+            })() : [],
+            specifications: product.specifications_c ? (() => {
+              try {
+                return JSON.parse(product.specifications_c);
+              } catch (e) {
+                return {};
+              }
+            })() : {},
             description: product.description_c,
             rating: product.rating_c,
             reviewCount: product.review_count_c,
@@ -231,8 +267,20 @@ export const productService = {
             name: product.name_c,
             brand: product.brand_c,
             price: product.price_c,
-            images: product.images_c ? JSON.parse(product.images_c) : [],
-            specifications: product.specifications_c ? JSON.parse(product.specifications_c) : {},
+images: product.images_c ? (() => {
+              try {
+                return JSON.parse(product.images_c);
+              } catch (e) {
+                return [];
+              }
+            })() : [],
+            specifications: product.specifications_c ? (() => {
+              try {
+                return JSON.parse(product.specifications_c);
+              } catch (e) {
+                return {};
+              }
+            })() : {},
             description: product.description_c,
             rating: product.rating_c,
             reviewCount: product.review_count_c,
